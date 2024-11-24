@@ -36,4 +36,4 @@ jobs:
           git config --global user.email ${{ github.actor }}@users.noreply.github.com
           git add .
           git commit -am "proto update"
-          git push origin
+          git push origin main
