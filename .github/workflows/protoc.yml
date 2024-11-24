@@ -1,6 +1,9 @@
 name: Protocol Buffer Go Stubs Generation
 run-name: ${{ github.actor }} is running Protobuf generation 🚀
-on: [push]
+on:
+  push:
+    tags:
+      - v**  
 jobs:
   protoc:
     name: "Generate protobufs"
