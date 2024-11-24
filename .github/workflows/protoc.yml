@@ -22,9 +22,18 @@ jobs:
         run: go version
       - name: "Extract release version"
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: "Generating for Golang"
-        shell: bash
+      - name: "Generate for Golang"
         run: |
-          chmod +x "${GITHUB_WORKSPACE}/protoc.sh"
-          ls -alh ${GITHUB_WORKSPACE}
-          ./protoc.sh ${{ matrix.service }} ${{ env.RELEASE_VERSION }} ${{ github.actor }} ${{ github.actor }}@users.noreply.github.com
+          sudo apt-get install -y protobuf-compiler golang-goprotobuf-dev
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest          
+          mkdir -p go
+          protoc --go_out=./go --go_opt=paths=source_relative --go-grpc_out=./go --go-grpc_opt=paths=source_relative ./${{ matrix.service }}/*.proto
+          cd go
+          go mod init github.com/bochap-learning/microservices-proto || true
+          go mod tidy
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email ${{ github.actor }}@users.noreply.github.com
+          git add .
+          git commit -am "proto update"
+          git push origin main
