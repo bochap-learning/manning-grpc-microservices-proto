@@ -8,9 +8,6 @@ jobs:
   protoc:
     name: "Generate protobufs"
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        service: ["order", "payment", "shipping"]
     steps:
       - name: Setup Go 1.23.x
         uses: actions/setup-go@v5
@@ -28,9 +25,9 @@ jobs:
           go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
           go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest          
           mkdir -p go
-          protoc --go_out=./go --go_opt=paths=source_relative --go-grpc_out=./go --go-grpc_opt=paths=source_relative ./${{ matrix.service }}/*.proto
-          cd go/${{ matrix.service }}
-          go mod init github.com/bochap-learning/microservices-proto/${{ matrix.service }} || true
+          protoc --go_out=./go --go_opt=paths=source_relative --go-grpc_out=./go --go-grpc_opt=paths=source_relative ./**/*.proto
+          cd go
+          go mod init github.com/bochap-learning/microservices-proto || true
           go mod tidy
           git config --global user.name ${{ github.actor }}
           git config --global user.email ${{ github.actor }}@users.noreply.github.com
