@@ -7,7 +7,7 @@ message CreatePaymentRequest {
 }
 
 message CreatePaymentResponse {
-    float64 total_price = 1;
+    float total_price = 1;
 }
 
 service Payment {
