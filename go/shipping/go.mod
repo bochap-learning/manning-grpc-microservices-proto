@@ -1,4 +1,4 @@
-module github.com/bochap-learning/manning-grpc-microservices-proto/shipping
+module github.com/bochap-learning/manning-grpc-microservices-proto/go/shipping
 
 go 1.23.3
 
