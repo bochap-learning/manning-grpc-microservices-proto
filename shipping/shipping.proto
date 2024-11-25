@@ -2,7 +2,9 @@ syntax = "proto3";
 
 option go_package = "github.com/bochap-learning/manning-grpc-microservices-proto/go/shipping";
 
-message CreateShippingRequest {}
+message CreateShippingRequest {
+    string address = 1;
+}
 
 message CreateShippingResponse {}
 
