@@ -9,9 +9,10 @@ jobs:
     name: "Generate protobufs"
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
+      fail-fast: true
       matrix:
-        service: ["order", "payment", "shipping"]    
-        max-parallel: 1
+        service: ["order", "payment", "shipping"]
     steps:
       - name: Setup Go 1.23.x
         uses: actions/setup-go@v5
