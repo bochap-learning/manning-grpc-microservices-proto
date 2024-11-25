@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/bochap-learning/microservices/service/payment";
+option go_package = "github.com/bochap-learning/manning-grpc-microservices-proto/payment";
 
 message CreatePaymentRequest {
     float price = 1;
