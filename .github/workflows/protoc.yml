@@ -36,8 +36,6 @@ jobs:
           mkdir -p go
           protoc --go_out=./go --go_opt=paths=source_relative --go-grpc_out=./go --go-grpc_opt=paths=source_relative ./${{ matrix.service }}/*.proto
           cd go/${{ matrix.service }}
-          go mod init github.com/bochap-learning/manning-grpc-microservices-proto/${{ matrix.service }} || true
-          go mod tidy
           git config --global user.name ${{ github.actor }}
           git config --global user.email ${{ github.actor }}@users.noreply.github.com
           git add .

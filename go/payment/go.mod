@@ -1,4 +1,4 @@
-module github.com/bochap-learning/microservices-proto/payment
+module github.com/bochap-learning/manning-grpc-microservices-proto/payment
 
 go 1.23.3
 

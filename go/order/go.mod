@@ -1,4 +1,4 @@
-module github.com/bochap-learning/microservices-proto/order
+module github.com/bochap-learning/manning-grpc-microservices-proto/order
 
 go 1.23.3
 
